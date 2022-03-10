@@ -5,6 +5,7 @@ plugins {
 apply plugin: 'kotlin-kapt'
 android {
     compileSdk 31
+    android.buildFeatures.viewBinding true
 
     defaultConfig {
         applicationId "com.aarron.gitsample"
@@ -49,8 +50,13 @@ dependencies {
 
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.0.1"
 
+
     implementation 'com.airbnb.android:epoxy:4.6.3'
     implementation "com.airbnb.android:epoxy-databinding:4.6.3"
-    implementation 'com.airbnb.android:epoxy-paging:4.6.3'
+//    implementation 'com.airbnb.android:epoxy-paging:4.6.3'
     kapt 'com.airbnb.android:epoxy-processor:4.6.3'
+    def paging_version = "3.0.0-beta02"
+    implementation "androidx.paging:paging-runtime-ktx:$paging_version"
+    implementation "androidx.paging:paging-rxjava3:$paging_version"
+
 }

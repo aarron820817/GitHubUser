@@ -2,6 +2,7 @@ package com.aarron.gitsample.holder
 
 import android.view.View
 import android.view.ViewDebug
+import android.widget.AdapterView
 import android.widget.ImageView
 import android.widget.TextView
 import com.airbnb.epoxy.EpoxyAttribute
@@ -12,6 +13,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.request.RequestOptions
 import com.aarron.gitsample.R
+import com.aarron.gitsample.bean.UserBean
 
 
 @EpoxyModelClass(layout = R.layout.item_user)
@@ -27,13 +29,8 @@ abstract class UserHolder : EpoxyModelWithHolder<UserHolder.Holder>()  {
 
 
 
-
-
     @EpoxyAttribute(EpoxyAttribute.Option.DoNotHash)
-    var itemClickListener: (String) -> Unit = {
-
-    }
-
+    var onClickListener: (String) -> Unit = {}
     override fun bind(holder: Holder) {
         Glide
             .with(holder.itemView)
@@ -51,9 +48,13 @@ abstract class UserHolder : EpoxyModelWithHolder<UserHolder.Holder>()  {
         }
 
 
+
         holder.tv_name.text = login
-//        holder.itemView.setOnClickListener { itemClickListener(movieId) }
+
+        holder.itemView.setOnClickListener { onClickListener(login) }
+
     }
+
 
     class Holder : EpoxyHolder() {
 

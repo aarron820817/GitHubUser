@@ -8,10 +8,9 @@ import com.aarron.gitsample.model.MainModel
 class MainPresenter(var view: MainContract.IMainView) : MainContract.IMainPresenter {
 
     var model: MainContract.IMainModel = MainModel(this)
-    override fun getUsers(id: String, page_size: Int) {
 
-        model.getUsers(id, page_size)
-    }
+    override fun getUsers(id: String, page_size: Int, result: ArrayList<UserBean>) {
+        model.getUsers(id, page_size,result)    }
 
     override fun showData(datas: ArrayList<UserBean>) {
         view.showData(datas)

@@ -4,19 +4,23 @@ import com.aarron.gitsample.bean.UserBean
 
 
 interface MainContract {
-    interface IMainView : BaseContract.IBaseView {
+    interface IMainView  {
         fun closeLoading()
         fun showData(datas :ArrayList<UserBean>)
-
+        fun showProgressBar()
+        fun closeProgressBar()
+        fun showDialog(isClose: Boolean, title: String, msg: String)
+        fun showLoading()
     }
 
-    interface IMainPresenter : BaseContract.IBasePresenter {
-        fun getUsers(id: String, page_size: Int)
+    interface IMainPresenter  {
+        fun getUsers(id: String, page_size: Int,result: ArrayList<UserBean>)
         fun showData(datas :ArrayList<UserBean>)
+        fun closeLoading()
+
     }
 
-    interface IMainModel : BaseContract.IBaseModel {
-
-        fun getUsers(id: String, page_size: Int)
+    interface IMainModel{
+        fun getUsers(id: String, page_size: Int, result: ArrayList<UserBean>)
     }
 }

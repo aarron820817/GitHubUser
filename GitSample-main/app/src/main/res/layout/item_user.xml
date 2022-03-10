@@ -30,9 +30,9 @@
     <ImageView
         android:id="@+id/img_admin"
         android:layout_width="50dp"
-        android:layout_height="10dp"
-
-        android:layout_marginTop="8dp"
+        android:layout_height="20dp"
+        android:scaleType="fitXY"
+        android:layout_marginTop="2dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@id/tv_name"

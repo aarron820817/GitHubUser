@@ -6,21 +6,18 @@ import com.aarron.gitsample.retrofit.RetrofitManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import kotlin.collections.ArrayList
 
 
 class MainModel(var presenter: MainContract.IMainPresenter) : MainContract.IMainModel {
 
-    override fun getUsers(id: String, page_size: Int) {
+    override fun getUsers(id: String, page_size: Int, result: ArrayList<UserBean>) {
         try {
             GlobalScope.launch(Dispatchers.IO) {
                 val apiService = RetrofitManager.mInstance.myAPIService
-                var result: ArrayList<UserBean>?
-                if (id.isNullOrEmpty()) {
-                   var res =apiService.getUsersDefault(page_size).execute()
-                   result = res.body() as ArrayList<UserBean>?
-
-                    presenter.showData(result!!)
+                if(id.isEmpty()){
+                    var res = apiService.getUsers(page_size, 20).execute()
+                    result.addAll(res.body().toList())
+                    presenter.showData(result)
                 }
 
             }
@@ -31,4 +28,6 @@ class MainModel(var presenter: MainContract.IMainPresenter) : MainContract.IMain
         }
 
     }
+
+
 }
